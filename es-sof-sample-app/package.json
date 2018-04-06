@@ -17,7 +17,10 @@
     "bootstrap": "^4.0.0",
     "bootstrap-vue": "^2.0.0-rc.6",
     "fhirclient": "^0.1.12",
+    "material-design-icons-iconfont": "^3.0.3",
+    "npm": "^5.8.0",
     "vue": "^2.5.2",
+    "vue-materialize-datatable": "^0.7.3",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
