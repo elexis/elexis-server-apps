@@ -5,18 +5,19 @@
       <b-navbar-brand to="/">Elexis-Server</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
-          <b-nav-item to="/">Home</b-nav-item>
+          <b-nav-item to="/">Connection</b-nav-item>
+          <b-nav-item to="/patients">Patients</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
     <!-- routes will be rendered here -->
-    <router-view />
+    <router-view v-bind:smart="this.smart"/>
     <footer class="footer">
       <span class="text-muted">
-        <div v-if="this.$parent.smart != null">
-         Connected to {{ this.$parent.smart.server.serviceUrl}} [<a href="#" v-on:click="tokenInfo()">token-info</a>] [<a href="#" v-on:click="disconnect()">disconnect</a>]
+        <div v-if="this.smart != null">
+         Connected to {{ this.smart.server.serviceUrl}} [<a href="#" v-on:click="tokenInfo()">token-info</a>] [<a href="#" v-on:click="disconnect()">disconnect</a>]
         </div>
-        <div v-else class="container">
+        <div v-else>
         Not connected
         </div>
       </span>
@@ -27,15 +28,27 @@
 <script>
 export default {
   name: 'app',
+  data: function () {
+    return {
+      smart: null
+    }
+  },
   methods: {
     disconnect () {
-      this.$parent.smart = null
+      this.smart = null
     },
     tokenInfo () {
       var winPrint = window.open('', '', 'left=0,top=0,width=800,height=600,toolbar=0,scrollbars=0,status=0')
-      winPrint.document.write('<pre>' + JSON.stringify(this.$parent.smart, null, 2) + '</pre>')
+      winPrint.document.write('<pre>' + JSON.stringify(this.smart, null, 2) + '</pre>')
       winPrint.document.close()
     }
+  },
+  beforeMount: function () {
+    var vm = this
+    window.FHIR.oauth2.ready(function (smart) {
+      console.log("Received smart context")
+      vm.smart = smart
+    })
   }
 }
 </script>

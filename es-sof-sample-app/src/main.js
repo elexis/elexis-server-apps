@@ -4,11 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
+import VueGoodTable from 'vue-good-table'
+import 'vue-good-table/dist/vue-good-table.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'fhirclient'
 
 Vue.use(BootstrapVue)
+Vue.use(VueGoodTable)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
@@ -16,15 +19,5 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App },
-  data: {
-    smart: null
-  },
-  beforeMount: function () {
-    var vm = this
-    window.FHIR.oauth2.ready(function (smart) {
-      console.log("Received smart context")
-      vm.smart = smart
-    })
-  }
+  components: { App }
 })

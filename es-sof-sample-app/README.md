@@ -2,23 +2,23 @@
 
 > Elexis Server SMART on FHIR sample app
 
-This is a sample application to use the SMART on FHIR interface provided by the [Elexis-Server](https://github.com/elexis/elexis-server) (ES >v1.6). In order to use this application,
+This is a sample application to use the SMART on FHIR interface provided by the [Elexis-Server](https://github.com/elexis/elexis-server) (ES >=v1.6). In order to use this application,
 you have to register it with the ES OpenId Server.
 
 ### Registering this app with ES-OpenId
 
-* Log in to http://yourserver:8380/openid with an Elexis user
+* Assert Elexis user is configured for web usage
+  * User has role `fhir` assigned, and role exists
+* Log in to http://yourserver:8380/openid with a web-enabled, Elexis user with Administrator privileges
 * Switch to `Manage Clients` / `New Client`
   * Main
     * Client name: `es-sof-sample-app`
     * Client id: `es-sof-sample-app`
     * Redirect URI(s): `http://localhost:8080/`
   * Access
-    * Scope: `fhir, openid, profile`
+    * Scope: `fhir, openid`
   * Credentials
     * Token Endpoint Authentication Method: `No authentication`
-* Be sure, that the user you will be using the app with has the role `fhir` set
-
 
 ## Build Setup
 
