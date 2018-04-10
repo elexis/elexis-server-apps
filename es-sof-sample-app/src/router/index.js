@@ -17,7 +17,8 @@ export default new Router({
       path: '/patients',
       name: 'Patients',
       component: Patients,
-      props: true
+      props: true,
+      
     }
   ]
 })
