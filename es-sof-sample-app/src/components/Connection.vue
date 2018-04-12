@@ -58,11 +58,11 @@ export default {
       window.FHIR.oauth2.authorize({
         client: {
           client_id: this.clientId,
-          scope: this.scopes
+          scope: this.scopes,
+          redirect_uri: "/#/callback"
         },
         server: this.fhirServer
       }, errback)
-      console.log(this.$parent)
     },
     registerApp () {
       // https://github.com/smart-on-fhir/client-js/tree/master/src/client

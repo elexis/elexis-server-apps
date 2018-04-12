@@ -1,30 +1,21 @@
-<template>
-  <div id="app">
-    <div id="main">
-    <b-navbar toggleable="md" type="dark" variant="dark">
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-navbar-brand to="/">Elexis-Server</b-navbar-brand>
-      <b-collapse is-nav id="nav_collapse">
-        <b-navbar-nav>
-          <b-nav-item to="/">Connection</b-nav-item>
-          <b-nav-item to="/patients">Patients</b-nav-item>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
-      <!-- routes will be rendered here -->
-      <router-view v-bind:smart="this.smart"/>
-    </div>
-    <footer class="footer">
-      <span class="text-muted">
-        <div v-if="this.smart != null">
-         Connected to {{ this.smart.server.serviceUrl}} [<a href="#" v-on:click="tokenInfo()">token-info</a>] [<a href="#" v-on:click="disconnect()">disconnect</a>]
-        </div>
-        <div v-else>
-        Not connected
-        </div>
-      </span>
-    </footer>
-  </div>
+<template lang="pug">
+  div#app
+    div
+      b-navbar(toggleable="md" type="dark" variant="dark")
+        b-navbar-toggle(target="nav_collapse")
+        b-navbar-brand(to="/") Elexis-Server 
+        b-collapse#nav_collapse(is-nav)
+          b-navbar-nav
+            b-nav-item(to="/") Connection
+            b-nav-item(to="/patients") Patients
+      router-view(v-bind:smart="this.smart" v-on:smartContextSet="smartContextSet")
+    div
+    footer.footer
+      span.text-muted
+        div(v-if="this.smart != null")
+          | Connected to {{ this.smart.server.serviceUrl}} [<a href="#" v-on:click="tokenInfo()">token-info</a>] [<a href="#" v-on:click="disconnect()">disconnect</a>]
+        div(v-else)
+          | Not connected
 </template>
 
 <script>
@@ -43,17 +34,10 @@ export default {
       var winPrint = window.open('', '', 'left=0,top=0,width=800,height=600,toolbar=0,scrollbars=0,status=0')
       winPrint.document.write('<pre>' + JSON.stringify(this.smart, null, 2) + '</pre>')
       winPrint.document.close()
+    },
+    smartContextSet (value) {
+      this.smart = value
     }
-  },
-  beforeMount: function () {
-    var vm = this
-    function errback (err) {
-      console.log(err)
-    }
-    window.FHIR.oauth2.ready(function (smart) {
-      console.log("Received smart context")
-      vm.smart = smart
-    }, errback)
   }
 }
 </script>
