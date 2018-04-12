@@ -47,10 +47,13 @@ export default {
   },
   beforeMount: function () {
     var vm = this
+    function errback (err) {
+      console.log(err)
+    }
     window.FHIR.oauth2.ready(function (smart) {
       console.log("Received smart context")
       vm.smart = smart
-    })
+    }, errback)
   }
 }
 </script>

@@ -14,6 +14,8 @@
 </template>
 
 // https://github.com/xaksis/vue-good-table
+// TODO api paging
+// https://alligator.io/vuejs/dynamic-components/
 
 <script>
 import JSONFormatter from 'json-formatter-js'
@@ -85,6 +87,11 @@ export default {
   },
   watch: {
     smart: function () {
+      this.getPatients()
+    }
+  },
+  mounted: function () {
+    if (this.smart != null) {
       this.getPatients()
     }
   }

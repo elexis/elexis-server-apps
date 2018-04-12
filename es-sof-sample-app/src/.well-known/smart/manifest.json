@@ -1,0 +1,18 @@
+{
+    "software_id": "info.elexis.elexis-server:es-sof-sample-app:1.0-SNAPSHOT",
+    "client_name": "Elexis-Server SMART on FHIR sample application",
+    "client_uri": "http://localhost:8080/",
+    "logo_uri": "http://elexis.info/images/splash.png",
+    "launch_url": "http://localhost:8080/",
+    "redirect_uris": [
+        "http://localhost:8080/"
+    ],
+    "scope": "fhir openid",
+    "token_endpoint_auth_method": "none",
+    "grant_types": [
+        "authorization_code"
+    ],
+    "fhir_versions": [
+        "3.0.1"
+    ]
+}
