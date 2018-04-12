@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div id="main">
     <b-navbar toggleable="md" type="dark" variant="dark">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-navbar-brand to="/">Elexis-Server</b-navbar-brand>
@@ -10,8 +11,9 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <!-- routes will be rendered here -->
-    <router-view v-bind:smart="this.smart"/>
+      <!-- routes will be rendered here -->
+      <router-view v-bind:smart="this.smart"/>
+    </div>
     <footer class="footer">
       <span class="text-muted">
         <div v-if="this.smart != null">
@@ -116,5 +118,9 @@ body {
   width: auto;
   max-width: 680px;
   padding: 0 15px;
+}
+
+#app{
+ padding: 10px;
 }
 </style>

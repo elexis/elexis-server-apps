@@ -1,19 +1,42 @@
 <template lang="pug">
         div
-            vue-good-table(:columns="columns" :rows="rows" :search-options="searchOptions" :sort-options="{enabled: false}" :pagination-options="{ enabled: true, perPage: 20}" styleClass="vgt-table striped bordered")
+          div
+            vue-good-table(
+              @on-row-click="rowSelected" 
+              :columns="columns" 
+              :rows="rows" 
+              :sort-options="{enabled: false}" 
+              :pagination-options="{ enabled: true, perPage: 20}" 
+              :search-options="{ enabled:true }" 
+              )
+          div(id="jsonOutput")
+            div
 </template>
 
-// https://github.com/xaksis/vue-good-table#empty-state-slot
+// https://github.com/xaksis/vue-good-table
 
 <script>
+import JSONFormatter from 'json-formatter-js'
+
 export default {
   props: ['smart'],
   methods: {
     getPatients: function () {
       var vm = this
       this.smart.api.search({ type: "Patient", query: { name: this.nameFilter } }).then(function (bundle) {
+        console.log("Fetching patients...")
         vm.rows = bundle.data.entry
       })
+    },
+    rowSelected: function (row) {
+      var result = document.getElementById('jsonOutput')
+      try {
+        var formatter = new JSONFormatter(row.row, 4)
+        result.innerHTML = ''
+        result.appendChild(formatter.render())
+      } catch (e) {
+        result.innerHTML = 'error'
+      }
     },
     getPatientFamilyName: function (data) {
       return data.resource.name[0].family
@@ -31,10 +54,6 @@ export default {
   data: function () {
     return {
       nameFilter: 'Descher',
-      searchOptions: {
-        enabled: true,
-        searchFn: this.patSearchFn
-      },
       rows: [],
       columns: [
         {
