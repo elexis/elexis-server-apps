@@ -33,7 +33,7 @@
       div(id="jsonOutput")
 </template>
 <script>
-import manifestJson from '@/.well-known/smart/manifest.json'
+import manifestJson from '../assets/manifest.json'
 import JSONFormatter from 'json-formatter-js'
 
 export default {
@@ -54,7 +54,6 @@ export default {
       function errback (err) {
         vm.showConnectionError = true
         vm.connectionError = err
-        alert(err)
       }
       window.FHIR.oauth2.authorize({
         client: {
@@ -71,7 +70,6 @@ export default {
       function errback (err) {
         vm.showConnectionError = true
         vm.connectionError = err
-        alert(err)
       }
       this.$http.post(this.registrationUrl, manifestJson).then(function (res) {
         var result = document.getElementById('jsonOutput')
