@@ -11,10 +11,13 @@
             input.form-control(type="text" v-model="registrationUrl")
           div.col-sm-1
             button(class="btn btn-primary" @click="registerApp()") Register App
+          div.col-sm-1
+            button(class="btn btn-primary" @click="showManifest()") Show manifest
         div.form-group.row
           label.col-sm-2.col-form-label Server URL
           div.col-sm-4
-            input.form-control(type="text" v-model="fhirServer")
+            select.form-control(type="select" v-model="fhirServer")
+              option(v-for="option in fhirServerUrls" v-bind:value="option.url") {{ option.url }}
         div.form-group.row
           label.col-sm-2.col-form-label OAuth2 Client Id
           div.col-sm-4
@@ -30,8 +33,9 @@
     div(v-else)
       h2 Connected
       p Connected to {{ this.smart.server.serviceUrl }}
-      div(id="jsonOutput")
+    div(id="jsonOutput")
 </template>
+
 <script>
 import manifestJson from '../assets/manifest.json'
 import JSONFormatter from 'json-formatter-js'
@@ -45,7 +49,14 @@ export default {
       fhirServer: "http://localhost:8380/fhir",
       registrationUrl: "http://localhost:8380/openid/register",
       clientId: "es-sof-sample-app",
-      scopes: "fhir openid"
+      scopes: "fhir openid",
+      fhirServerUrls: [
+        { url: 'http://localhost:8380/fhir'
+        },
+        {
+          url: 'https://musterpraxis.medelexis.ch/fhir'
+        }
+      ]
     }
   },
   methods: {
@@ -71,6 +82,7 @@ export default {
         vm.showConnectionError = true
         vm.connectionError = err
       }
+      // TODO manifest json, replace with this url?
       this.$http.post(this.registrationUrl, manifestJson).then(function (res) {
         var result = document.getElementById('jsonOutput')
         try {
@@ -82,6 +94,16 @@ export default {
           result.innerHTML = 'error'
         }
       }, errback)
+    },
+    showManifest () {
+      var result = document.getElementById('jsonOutput')
+      try {
+        var formatter = new JSONFormatter(manifestJson, 4)
+        result.innerHTML = ''
+        result.appendChild(formatter.render())
+      } catch (e) {
+        result.innerHTML = 'error'
+      }
     }
   }
 }

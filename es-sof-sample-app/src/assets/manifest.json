@@ -5,7 +5,7 @@
     "logo_uri": "http://elexis.info/images/splash.png",
     "launch_url": "http://localhost:8080/",
     "redirect_uris": [
-        "http://localhost:8080/#/callback"
+        "http://localhost:8080/"
     ],
     "scope": "fhir openid",
     "token_endpoint_auth_method": "none",
