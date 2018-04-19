@@ -35,3 +35,5 @@ You should see something like
         http://10.23.49.21:8080
 
 You can stop the server if needed using <kbd>Ctrl+C</kbd>.
+
+After starting up, use your webbrowser to access http://localhost:8080/launch.html.

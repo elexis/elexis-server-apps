@@ -33,6 +33,9 @@
     div(v-else)
       h2 Connected
       p Connected to {{ this.smart.server.serviceUrl }}
+      div.form-group.row
+        div.col-sm-1
+          button(class="btn btn-primary" @click="showAccessToken()") Show access token
     div(id="jsonOutput")
 </template>
 
@@ -99,6 +102,16 @@ export default {
       var result = document.getElementById('jsonOutput')
       try {
         var formatter = new JSONFormatter(manifestJson, 4)
+        result.innerHTML = ''
+        result.appendChild(formatter.render())
+      } catch (e) {
+        result.innerHTML = 'error'
+      }
+    },
+    showAccessToken () {
+      var result = document.getElementById('jsonOutput')
+      try {
+        var formatter = new JSONFormatter(this.smart, 4)
         result.innerHTML = ''
         result.appendChild(formatter.render())
       } catch (e) {

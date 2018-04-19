@@ -25,9 +25,9 @@
         }
 
         FHIR.oauth2.ready(function (smart) {
-            header.innerHTML = "Patient list for " + smart.server.serviceUrl + " on filter <i>%muster%</i>"
+            header.innerHTML = "Patient list for " + smart.server.serviceUrl
             console.log(JSON.stringify(smart))
-            smart.api.search({ type: "Patient", query: { name: "muster" } }).then(function (results) {
+            smart.api.search({ type: "Patient", query: { name: "" } }).then(function (results) {
                 results.data.entry.forEach(function (entry) {
                     console.log(JSON.stringify(entry.resource))
                     displayPatient(entry.resource);
