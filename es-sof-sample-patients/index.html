@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://rawgithub.com/smart-on-fhir/client-js/master/dist/fhir-client.js"></script>
+</head>
+
+<body>
+    <h1 id="header"></h1>
+    <ul id="pat_list"></ul>
+    <script type="text/javascript">
+        function getPatientName(pt) {
+            if (pt.name) {
+                var names = pt.name.map(function (name) {
+                    return name.given + " " + name.family;
+                });
+                return names.join(" / ")
+            } else {
+                return "anonymous";
+            }
+        }
+
+        function displayPatient(pt) {
+            pat_list.innerHTML += "<li> " + getPatientName(pt) + "</li>";
+        }
+
+        FHIR.oauth2.ready(function (smart) {
+            header.innerHTML = "Patient list for " + smart.server.serviceUrl + " on filter <i>%muster%</i>"
+            console.log(JSON.stringify(smart))
+            smart.api.search({ type: "Patient", query: { name: "muster" } }).then(function (results) {
+                results.data.entry.forEach(function (entry) {
+                    console.log(JSON.stringify(entry.resource))
+                    displayPatient(entry.resource);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

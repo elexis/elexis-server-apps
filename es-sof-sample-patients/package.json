@@ -1,0 +1,13 @@
+{
+  "name": "sof_auth_sample",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": " node_modules/http-server/bin/http-server -p 8080 ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
