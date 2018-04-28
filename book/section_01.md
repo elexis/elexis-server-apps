@@ -50,3 +50,7 @@ au install fhirclient
 ```bash
 au run --watch.
 ```
+
+## Launch Elexis Server
+
+`docker run -e DEMO_MODE='true' -e TZ=Europe/Zurich -p 8380:8380 -p 8480:8480 -p 7234:7234 medevit/elexis-server`

@@ -1,5 +1,5 @@
 {
-  "name": "es-aurelia",
+  "name": "au-es",
   "type": "project:application",
   "bundler": {
     "id": "cli",
@@ -32,7 +32,7 @@
         "prepend": [
           "node_modules/bluebird/js/browser/bluebird.core.js",
           "node_modules/aurelia-cli/lib/resources/scripts/configure-bluebird.js",
-          "node_modules/systemjs/dist/system.js"
+          "node_modules/requirejs/require.js"
         ],
         "dependencies": [
           "aurelia-binding",
@@ -72,40 +72,17 @@
             "main": "aurelia-testing",
             "env": "dev"
           },
+          "text",
           {
-            "name": "text",
-            "path": "../node_modules/systemjs-plugin-text",
-            "main": "text"
-          },
-          {
-            "name": "aurelia-api",
-            "main": "aurelia-api",
-            "path": "../node_modules/aurelia-api/dist/amd",
-            "resources": []
-          },
-          {
-            "name": "aurelia-authentication",
-            "main": "aurelia-authentication",
-            "path": "../node_modules/aurelia-authentication/dist/amd",
-            "resources": []
-          },
-          {
-            "name": "aurelia-fetch-client",
-            "main": "aurelia-fetch-client",
-            "path": "../node_modules/aurelia-fetch-client/dist/amd"
-          },
-          "extend",
-          {
-            "name": "jwt-decode",
-            "main": "lib/index.js",
-            "path": "../node_modules/jwt-decode",
-            "resources": []
+            "name": "fhirclient",
+            "path": "../node_modules/fhirclient",
+            "main": "fhir-client"
           }
         ]
       }
     ],
     "loader": {
-      "type": "system",
+      "type": "require",
       "configTarget": "vendor-bundle.js",
       "includeBundleMetadataInConfig": "auto",
       "plugins": [

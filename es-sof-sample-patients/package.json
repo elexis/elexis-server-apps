@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": " node_modules/http-server/bin/http-server -p 8080 ."
+    "dev": " node_modules/http-server/bin/http-server -p 5555 ."
   },
   "author": "",
   "license": "ISC",
