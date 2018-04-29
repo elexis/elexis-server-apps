@@ -4,6 +4,7 @@
  **************************************************/
 
 import 'fhirclient'
+declare const FHIR:any
 
 /**
  * After (hopefully successful) authentication and authorization, the smart client is ready for 

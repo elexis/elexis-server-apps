@@ -5,6 +5,7 @@
 
 import 'fhirclient'
 import {autoinject} from 'aurelia-framework'
+declare const FHIR:any
 
 /*
 This is the entry point in our small app. Make sure the client_id below matches the client-id registered
