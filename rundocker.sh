@@ -3,6 +3,8 @@
 # If an elexis container exists: Start that container
 # Else create a new container from the most recent elexis-server image
 
+# Note: You must be either root or member of the docker group to run this.
+
 if docker ps|grep elexis-server;
 then
   echo Elexis Server is already running!
