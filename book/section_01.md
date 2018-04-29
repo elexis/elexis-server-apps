@@ -44,7 +44,7 @@ npm install -g aurelia-cli
 
 ### Install Docker
 
-See the [Docker Website](http://docker.io)
+See the [Docker Website](https://www.docker.com/community-edition#/download)
 
 ### Quick walkthrough with our sample Aurelia project
 
@@ -123,7 +123,7 @@ If you do this the first time, you'll be requested to grant access for this app 
 
 ![](img/grant_1.jpg)
 
-The App should connect with the server and output a patent list in the log.
+The App should connect with the server and output a patient list in the console log.
 
 ![](img/grant_2.jpg)
 

@@ -4,12 +4,14 @@
  **************************************************/
 
 import 'fhirclient'
+import {autoinject} from 'aurelia-framework'
 
 /*
 This is the entry point in our small app. Make sure the client_id below matches the client-id registered
 with the Elexis-Authorization-Server.
 
 */
+@autoinject
 export class Login{
 
   public login(){
