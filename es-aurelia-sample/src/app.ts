@@ -4,8 +4,8 @@
  **************************************************/
 
  /**
-  * We start with just two routes: The first will presernt an option to log in, the second
-  * will display the login state.
+  * We start with just two routes: The first will present an button to connect, the second
+  * will display the connect state.
   */
 import {Router, RouterConfiguration} from 'aurelia-router'
 export class App {
