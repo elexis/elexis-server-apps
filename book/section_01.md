@@ -46,12 +46,24 @@ npm install -g aurelia-cli
 
 See the [Docker Website](https://www.docker.com/community-edition#/download)
 
+Note: To run docker commands, you must either root or belong to the "docker" group - which is, in some respect, the same.
+To add a user to the docker group, use the following command: `sudo usermod -aG docker $USER`. After that, you must logout and relogin that user.
+
+
 ### Quick walkthrough with our sample Aurelia project
 
-This will guide you to a very simple Aurelia Starter to connect with the Elexis Server. No bells and whistles, just a bare bones connector to demonstrate, how the principle works.
+This will guide you through a very simple Aurelia Starter to connect with the Elexis Server. No bells and whistles, just a bare bones connector to demonstrate, how the principle works.
 
 
-* Create new Aurelia project
+#### Clone the sample project:
+
+```bash
+git clone https://github.com/rgwch/elexis-server-apps
+cd elexis-server-apps
+npm install
+```
+
+#### Or create the project from scratch:
 
 ```bash
 cd Documents\
