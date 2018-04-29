@@ -90,6 +90,10 @@ On subsequent starts, use `docker start -ia elexis-server` instead to keep any m
 
 go to [http://localhost:8380/openid](http://localhost:8380/openid) and log in with the Username **Administrator** and the password **admin**.
 
+```{.bemerkung}
+newer versions of elexis-server use 3 factor authentication. See the server docs for more informations
+```
+
 add a **new client**. 
 
 On the main-page, enter a **Client Name** (any name will do) and set the address **http://localhost:9000/#/auth** as a redirect address. 
