@@ -19,7 +19,7 @@ export class Login{
       {
         client: {
 
-          client_id: '56c48b96-9d29-4931-b3bb-22eb656065de',
+          client_id: 'ch.webelexis.apps.sample.001',
           scope: 'fhir',
           redirect_uri: "http://localhost:9000/#/auth"
         },

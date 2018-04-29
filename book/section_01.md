@@ -82,19 +82,32 @@ Please use the source code at `es-aurelia-sample/src` as a reference for the res
 
 ## Launch Elexis Server and register the app
 
-`docker run -e DEMO_MODE='true' -e TZ=Europe/Zurich -p 8380:8380 -p 8480:8480 -p 7234:7234 medevit/elexis-server`
+`docker run -e DEMO_MODE='true' -e TZ=Europe/Zurich -p 8380:8380 -p 8480:8480 -p 7234:7234 --name elexis-server medevit/elexis-server`
+
+```{.einschub}
+On subsequent starts, use `docker start -ia elexis-server` instead to keep any modifications you made in earlier runs. Read the docuentation on `docker commit` to learn how to persist a changed state in a new container.
+```
 
 go to [http://localhost:8380/openid](http://localhost:8380/openid) and log in with the Username **Administrator** and the password **admin**.
 
 add a **new client**. 
 
-* on the main-page, enter a **Client Name** (any name will do) and set the address **http://localhost:9000/#/auth** as a redirect address. 
+On the main-page, enter a **Client Name** (any name will do) and set the address **http://localhost:9000/#/auth** as a redirect address. 
 
-* on the credentials-page, select "no authentication" for now.
+![](img/register_1.jpg)
 
-* click **save** and copy the then displayed client ID.
+On the access-page, add ad least the *fhir* sope.
 
-* Enter the client ID in the file `es-aurelia-sample/src/login.ts`.
+![](img/register_2.jpg)
+
+on the credentials-page, select "no authentication" for now.
+
+![](img/register_3.jpg)
+
+click **save** and make sure, the correct client ID is displayed.
+
+![](img/register_4.jpg)
+
 
 ## Launch the sample app and connect with the server
 
@@ -106,4 +119,12 @@ au run --watch.
 
 * Click *connect*
 
-The App should connect with the server.
+If you do this the first time, you'll be requested to grant access for this app to the Elexis Server.
+
+![](img/grant_1.jpg)
+
+The App should connect with the server and output a patent list in the log.
+
+![](img/grant_2.jpg)
+
+
