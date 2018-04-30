@@ -6,8 +6,9 @@
     <script>
         FHIR.oauth2.authorize({
             client: {
-                "client_id": "197c3c0d-c0ae-42ff-b9b0-8c997ae19c74",
-                "scope": "fhir"
+                "client_id": "d384a90b-b6d7-4f56-bb2d-60eaef4ae08c",
+                "scope": "fhir",
+                "redirect_uri":"http://localhost:5555/index.html"
             },
             server: "http://localhost:8380/fhir"
         });
