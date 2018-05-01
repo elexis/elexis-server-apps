@@ -8,9 +8,7 @@ import {autoinject} from 'aurelia-framework'
 declare const FHIR:any
 
 /*
-This is the entry point in our small app. Make sure the client_id below matches the client-id registered
-with the Elexis-Authorization-Server.
-
+This is the entry point in our small app. Make sure the client_id, scope and redirect_uri below match the respective entries registered with the Elexis-Authorization-Server.
 */
 @autoinject
 export class Login{
