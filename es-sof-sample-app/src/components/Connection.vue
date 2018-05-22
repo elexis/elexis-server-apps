@@ -27,6 +27,10 @@
           div.col-sm-4
             input.form-control(type="text" v-model="scopes")
         div.form-group.row
+          label.col-sm-2.col-form-label Web-Security deactivated
+          div.col-sm-4
+            input.form-control(type="checkbox" v-model="fhirServerNoWebSecurity")
+        div.form-group.row
           div.col-sm-1
             button(class="btn btn-primary" @click="submit()") Connect
       div(id="jsonOutput")
@@ -53,6 +57,7 @@ export default {
       registrationUrl: "http://localhost:8380/openid/register",
       clientId: "es-sof-sample-app",
       scopes: "fhir openid",
+      fhirServerNoWebSecurity: false,
       fhirServerUrls: [
         { url: 'http://localhost:8380/fhir'
         },
@@ -68,6 +73,15 @@ export default {
       function errback (err) {
         vm.showConnectionError = true
         vm.connectionError = err
+      }
+      if (this.fhirServerNoWebSecurity) {
+        var fhirClient = window.FHIR.client(
+          {
+            serviceUrl: this.fhirServer
+          }
+        )
+        vm.$emit("smartContextSet", fhirClient)
+        return
       }
       window.FHIR.oauth2.authorize({
         client: {
