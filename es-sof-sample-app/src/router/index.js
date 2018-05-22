@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Callback from '@/components/Callback'
 import Connection from '@/components/Connection'
 import Patients from '@/components/Patients'
+import Appointments from '@/components/Appointments'
 
 Vue.use(Router)
 
@@ -18,6 +19,12 @@ export default new Router({
       path: '/patients',
       name: 'Patients',
       component: Patients,
+      props: true
+    },
+    {
+      path: '/appointments',
+      name: 'Appointments',
+      component: Appointments,
       props: true
     },
     {

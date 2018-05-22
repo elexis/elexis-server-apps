@@ -8,6 +8,7 @@
           b-navbar-nav
             b-nav-item(to="/") Connection
             b-nav-item(to="/patients") Patients
+            b-nav-item(to="/appointments") Appointments
       router-view(v-bind:smart="this.smart" v-on:smartContextSet="smartContextSet")
     div
     footer.footer
