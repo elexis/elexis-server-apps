@@ -92,7 +92,7 @@ au install fhirclient
 
 Please use the source code at `es-aurelia-sample/src` as a reference for the rest of this chapter.
 
-The Aurelia framework i loaded in index.html and launches then src/main.ts. This configures the Framework and then continues to app.ts/app.html which is the entry point of the Program.
+The Aurelia framework is loaded in index.html and launches then src/main.ts. This configures the Framework and then continues to app.ts/app.html which is the entry point of the Program.
 
 We change app.ts to configure the Router (the part of the framework which is responsible to convert addresses like /#/something into calls to a component of the program). We define only two routes for now: The entry route (login.ts) and the route to call after successful authentication (ready.ts).
 
@@ -179,17 +179,13 @@ Thus, download the app for your mobile device and use the QR Code found [here](h
 Go to [http://localhost:8380/openid](http://localhost:8380/openid) and log in with the Username **Administrator** and the password **admin**. Use your TOTP App to generate the one-time code for the second factor.
 
 
-```{.bemerkung}
-I don't know how to generate the user secret for a working database. - Please provide info.
-```
-
 add a **new client**. 
 
 On the main-page, enter a **Client Name** (any name will do) and set the address **http://localhost:9000/#/auth** as a redirect address. 
 
 ![](img/register_1.jpg)
 
-On the access-page, add ad least the *fhir* sope.
+On the access-page, add at least the *fhir* sope.
 
 ![](img/register_2.jpg)
 

@@ -12,7 +12,7 @@ You can convert the source with pandoc in different formats such as epub, pdf, h
 
 To refer to such a link from another position:
 
-Here we link to [Some stuff](#somestuff).
+Here we link to \[Some stuff\](\#somestuff).
 
 If the sourcecode consists of several files, such links can span over different files.
 
