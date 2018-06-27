@@ -2,11 +2,16 @@
   div
     div(v-if="this.smart == null")
       h2 Connect to SMART on FHIR Server
-      p Select a SMART on FHIR server URL to register, resp. connect to.
       b-alert(variant="warning" :show="showConnectionError") {{ connectionError }}
       form
+        div.form-group.row.bg-light
+          label.col-sm-2.col-form-label Load configuration
+          div.col-sm-6
+            button.btn.btn-secondary.btn-r5(@click="loadLocalhost()") localhost (devel)
+            button.btn.btn-secondary.btn-r5(@click="loadMustermann()") Praxis Mustermann
+            button.btn.btn-secondary(@click="loadBeispielfrau()") Praxis Beispielfrau
         div.form-group.row
-          label.col-sm-2.col-form-label Registration URL
+          label.col-sm-2.col-form-label App Registration URL
           div.col-sm-4
             input.form-control(type="text" v-model="registrationUrl")
           div.col-sm-1
@@ -16,8 +21,7 @@
         div.form-group.row
           label.col-sm-2.col-form-label Server URL
           div.col-sm-4
-            select.form-control(type="select" v-model="fhirServer")
-              option(v-for="option in fhirServerUrls" v-bind:value="option.url") {{ option.url }}
+            input.form-control(type="text" v-model="fhirServer")
         div.form-group.row
           label.col-sm-2.col-form-label OAuth2 Client Id
           div.col-sm-4
@@ -57,14 +61,7 @@ export default {
       registrationUrl: "http://localhost:8380/openid/register",
       clientId: "es-sof-sample-app",
       scopes: "fhir openid",
-      fhirServerNoWebSecurity: false,
-      fhirServerUrls: [
-        { url: 'http://localhost:8380/fhir'
-        },
-        {
-          url: 'https://musterpraxis.medelexis.ch/fhir'
-        }
-      ]
+      fhirServerNoWebSecurity: false
     }
   },
   methods: {
@@ -91,6 +88,18 @@ export default {
         },
         server: this.fhirServer
       }, errback)
+    },
+    loadLocalhost () {
+      this.fhirServer = "http://localhost:8380/fhir"
+      this.registrationUrl = "http://localhost:8380/openid/register"
+    },
+    loadMustermann () {
+      this.fhirServer = "https://praxismustermann.medelexis.ch/fhir"
+      this.registrationUrl = "https://praxismustermann.medelexis.ch/openid/register"
+    },
+    loadBeispielfrau () {
+      this.fhirServer = "https://praxisbeispielfrau.medelexis.ch/fhir"
+      this.registrationUrl = "https://praxisbeispielfrau.medelexis.ch/openid/register"
     },
     registerApp () {
       // https://github.com/smart-on-fhir/client-js/tree/master/src/client
@@ -135,3 +144,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.btn-r5 {
+  margin-right: 5px;
+}
+</style>
