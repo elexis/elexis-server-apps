@@ -1,0 +1,3 @@
+[submodule "es-admin-app-nuxt/modules/nuxt-oauth"]
+	path = es-admin-app-nuxt/modules/nuxt-oauth
+	url = https://github.com/col-panic/nuxt-oauth
